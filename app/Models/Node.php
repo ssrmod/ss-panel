@@ -46,9 +46,24 @@ class Node extends Model
     {
         $log = $this->getLastNodeInfoLog();
         if ($log == null) {
-            return "暂无数据";
+            return 0;
         }
         return $log->log_time;
+    }
+    
+    public function getNodeLogTimeout()
+    {
+        $log = $this->getLastNodeInfoLog();
+        if ($log == null) {
+            return (int)time()-0;
+        }
+        return (int)time()-$log->log_time;
+    }
+
+    public function getNodeLogTimeoutSec()
+    {
+        $time = $this->getNodeLogTimeout();
+        return Tools::secondsToTime($time);
     }
     
     public function getLastNodeOnlineLog()
