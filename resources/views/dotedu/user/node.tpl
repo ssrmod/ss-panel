@@ -27,8 +27,9 @@
             <ul class="products-list product-list-in-box">
               <li class="item">
                 <div class="product-img"> <img src="../assets/public/img/iconfont-server.png" alt="Server Node"> </div>
-                <div class="product-info"> <a href="./node/{$node->id}" class="product-title">{$node->name} <span
-                                                    class="label label-info pull-right">{$node->status}</span></a>
+                <div class="product-info"> <a href="./node/{$node->id}" class="product-title">{$node->name} {if ((int)time()-$node->getNodeLogTime())>600}<span
+                                                    class="label label-danger pull-right">离线</span>{else}<span
+                                                    class="label label-info pull-right">{$node->status}</span>{/if}</a>
                   <p> {$node->info} </p>
                 </div>
               </li>
@@ -45,9 +46,9 @@
                                                         class="pull-right badge bg-aqua">{$user->port}</span></a></li>
                   <li><a href="./node/{$node->id}">加密方式 <span
                                                         class="pull-right badge bg-green">{if $node->custom_method == 1} {$user->method} {else} {$node->method} {/if}</span></a> </li>
-                  <li><a href="./node/{$node->id}">协议: <span
+                  <li><a href="./node/{$node->id}">协议插件: <span
                                                         class="pull-right badge bg-green">{$node->protocol}</span></a> </li>
-                  <li><a href="./node/{$node->id}">混淆: <span
+                  <li><a href="./node/{$node->id}">混淆插件: <span
                                                         class="pull-right badge bg-green">{$node->obfs}</span></a> </li>
                 </ul>
               </div>
@@ -59,15 +60,18 @@
                                                         class="pull-right badge bg-aqua">{$node->getOnlineUserCount()}</span></a> </li>
                   <li><a href="./node/{$node->id}">产生流量 <span
                                                         class="pull-right badge bg-green">{$node->getTrafficFromLogs()}</span></a> </li>
-                  <li><a href="./node/{$node->id}">负载: <span
-                                                        class="pull-right badge bg-green">{$node->getNodeLoad()}</span></a></li>
-                  <li><a href="./node/{$node->id}">运行时间: <span
-                                                        class="pull-right badge bg-green">{$node->getNodeUptime()}</span></a> </li>
+                  <li><a href="./node/{$node->id}">主机负载: {if ((int)time()-$node->getNodeLogTime())<600}<span
+                                                        class="pull-right badge bg-green">{$node->getNodeLoad()}{else}<span
+                                                        class="pull-right badge bg-warning">状态未知{/if}</span></a></li>
+                  <li><a href="./node/{$node->id}">运行时间: {if ((int)time()-$node->getNodeLogTime())<600}<span
+                                                        class="pull-right badge bg-green">{$node->getNodeUptime()}{else}<span
+                                                        class="pull-right badge bg-warning">停止运行{/if}</span></a> </li>
                 </ul>
               </div>
+                  {if ((int)time()-$node->getNodeLogTime())<600}
               <div class="col-md-12">
-                <table class="table">
-                  <tr>
+                <table class="table table-hover table-responsive">
+                  <tr class="info">
                     <th>电信延迟</th>
                     <th>电信下载速度</th>
                     <th>电信上传速度</th>
@@ -91,6 +95,8 @@
                   </tr>
                 </table>
               </div>
+                  {else}
+                  {/if}
             </div>
           </div>
         </div>
