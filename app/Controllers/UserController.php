@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\CheckInLog;
 use App\Models\InviteCode;
 use App\Models\Node;
+use App\Models\Speedtest,
 use App\Models\TrafficLog;
 use App\Services\Auth;
 use App\Services\Config;
@@ -62,12 +63,14 @@ class UserController extends BaseController
         $ary['server_port'] = $this->user->port;
         $ary['password'] = $this->user->passwd;
         $ary['method'] = $node->method;
-        if ($node->custom_method) {
-            $ary['method'] = $this->user->method;
-        }
         $ary['protocol'] = $node->protocol;
         $ary['obfs'] = $node->obfs;
-        $json = json_encode($ary);
+         if ($node->custom_method) {
+            $ary['method'] = $this->user->method;
+            $ary['protocol'] = $this->user->protocol;
+            $ary['obfs'] = $this->user->obfs;
+        }
+       $json = json_encode($ary);
         $json_show = json_encode($ary, JSON_PRETTY_PRINT);
 //        $ssurl = $ary['method'] . ":" . $ary['password'] . "@" . $ary['server'] . ":" . $ary['server_port'];
         $ssurl =  $ary['obfs'] . ":" . $ary['protocol'] . ":" . $ary['method'] . ":" . $ary['password'] . "@" . $ary['server'] . ":" . $ary['server_port'];
@@ -172,6 +175,26 @@ class UserController extends BaseController
         return $this->echoJson($response, $res);
     }
 
+    public function updateProtocol($request, $response, $args)
+    {
+        $user = Auth::getUser();
+        $protocol = $request->getParam('protocol');
+        $protocol = strtolower($method);
+        $user->updateProtocol($protocol);
+        $res['ret'] = 1;
+        return $this->echoJson($response, $res);
+    }
+	
+    public function updateObfs($request, $response, $args)
+    {
+        $user = Auth::getUser();
+        $obfs = $request->getParam('obfs');
+        $obfs = strtolower($method);
+        $user->updateObfs($obfs);
+        $res['ret'] = 1;
+        return $this->echoJson($response, $res);
+    }
+	
     public function logout($request, $response, $args)
     {
         Auth::logout();
