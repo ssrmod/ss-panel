@@ -179,7 +179,7 @@ class UserController extends BaseController
     {
         $user = Auth::getUser();
         $protocol = $request->getParam('protocol');
-        $protocol = strtolower($method);
+        $protocol = strtolower($protocol);
         $user->updateProtocol($protocol);
         $res['ret'] = 1;
         return $this->echoJson($response, $res);
@@ -189,7 +189,7 @@ class UserController extends BaseController
     {
         $user = Auth::getUser();
         $obfs = $request->getParam('obfs');
-        $obfs = strtolower($method);
+        $obfs = strtolower($obfs);
         $user->updateObfs($obfs);
         $res['ret'] = 1;
         return $this->echoJson($response, $res);
