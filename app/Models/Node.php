@@ -41,7 +41,16 @@ class Node extends Model
         }
         return $log->load;
     }
-
+    
+    public function getNodeLogTime()
+    {
+        $log = $this->getLastNodeInfoLog();
+        if ($log == null) {
+            return "暂无数据";
+        }
+        return $log->log_time;
+    }
+    
     public function getLastNodeOnlineLog()
     {
         $id = $this->attributes['id'];
