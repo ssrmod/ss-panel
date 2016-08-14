@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\CheckInLog;
 use App\Models\InviteCode;
 use App\Models\Node;
-use App\Models\Speedtest,
+use App\Models\Speedtest;
 use App\Models\TrafficLog;
 use App\Services\Auth;
 use App\Services\Config;
