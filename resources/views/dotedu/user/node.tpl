@@ -27,7 +27,7 @@
             <ul class="products-list product-list-in-box">
               <li class="item">
                 <div class="product-img"> <img src="../assets/public/img/iconfont-server.png" alt="Server Node"> </div>
-                <div class="product-info"> <a href="./node/{$node->id}" class="product-title">{$node->name} {if ((int)time()-$node->getNodeLogTime())>600}<span
+                <div class="product-info"> <a href="./node/{$node->id}" class="product-title">{$node->name} {if $node->getNodeLogTimeout()>600}<span
                                                     class="label label-danger pull-right">离线</span>{else}<span
                                                     class="label label-info pull-right">{$node->status}</span>{/if}</a>
                   <p> {$node->info} </p>
@@ -60,15 +60,15 @@
                                                         class="pull-right badge bg-aqua">{$node->getOnlineUserCount()}</span></a> </li>
                   <li><a href="./node/{$node->id}">产生流量 <span
                                                         class="pull-right badge bg-green">{$node->getTrafficFromLogs()}</span></a> </li>
-                  <li><a href="./node/{$node->id}">主机负载: {if ((int)time()-$node->getNodeLogTime())<600}<span
+                  <li><a href="./node/{$node->id}">主机负载: {if $node->getNodeLogTimeout()<600}<span
                                                         class="pull-right badge bg-green">{$node->getNodeLoad()}{else}<span
                                                         class="pull-right badge bg-warning">状态未知{/if}</span></a></li>
-                  <li><a href="./node/{$node->id}">运行时间: {if ((int)time()-$node->getNodeLogTime())<600}<span
+                  <li><a href="./node/{$node->id}">运行时间: {if $node->getNodeLogTimeout()<600}<span
                                                         class="pull-right badge bg-green">{$node->getNodeUptime()}{else}<span
-                                                        class="pull-right badge bg-warning">停止运行{/if}</span></a> </li>
+                                                        class="pull-right badge bg-warning">已停止运行 {$node->getNodeLogTimeoutSec()}{/if}</span></a> </li>
                 </ul>
               </div>
-                  {if ((int)time()-$node->getNodeLogTime())<600}
+                  {if $node->getNodeLogTimeout()<600}
               <div class="col-md-12">
                 <table class="table table-hover table-responsive">
                   <tr class="info">
