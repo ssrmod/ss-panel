@@ -25,12 +25,14 @@ Please visit [releases pages](https://github.com/orvice/ss-panel/releases) to do
 ## Install
 
 ### Step 0
+克隆代码
 
 ```
-git clone https://github.com/orvice/ss-panel.git
+git clone -b mod https://github.com/ssrmod/ss-panel.git
 ```
 
 ### Step 1
+安装composer运行库
 
 ```
 $ curl -sS https://getcomposer.org/installer | php
@@ -38,12 +40,13 @@ $ php composer.phar  install
 ```
 
 ### Step 2
+复制.env
 
 ```
 cp .env.example .env
 ```
 
-then edit .env
+编辑 .env
 
 ```
 chmod -R 777 storage
@@ -51,11 +54,11 @@ chmod -R 777 storage
 
 ### Step 3
 
-Import the sql to you mysql database.
+导入数据库.
 
 ### Step 4
 
-Nginx Config example:
+Nginx 配置文件:
 
 if you download ss-panel on path /home/www/ss-panel
 
