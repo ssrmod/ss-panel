@@ -50,6 +50,12 @@ class UserController extends BaseController
         return $this->view()->assign('nodes', $nodes)->assign('user', $user)->assign('msg', $msg)->display('user/node.tpl');
     }
 
+    public function base64safe_encode($string)
+	{
+	 $base64string = base64_encode($string);
+	 $safestring = str_replace("/","_",str_replace("+","-",$base64string));
+	 return $safestring;
+	}
 
     public function nodeInfo($request, $response, $args)
     {
@@ -70,17 +76,19 @@ class UserController extends BaseController
             $ary['protocol'] = $this->user->protocol;
             $ary['obfs'] = $this->user->obfs;
         }
-       $json = json_encode($ary);
+        $ary['remarks'] = $node->name;
+        $ary['group'] = $node->node_group;
+          $json = json_encode($ary);
         $json_show = json_encode($ary, JSON_PRETTY_PRINT);
-//        $ssurl = $ary['method'] . ":" . $ary['password'] . "@" . $ary['server'] . ":" . $ary['server_port'];
-        $ssurl =  $ary['obfs'] . ":" . $ary['protocol'] . ":" . $ary['method'] . ":" . $ary['password'] . "@" . $ary['server'] . ":" . $ary['server_port'];
+        $ssurl = $ary['method'] . ":" . $ary['password'] . "@" . $ary['server'] . ":" . $ary['server_port'];
         $ssqr = "ss://" . base64_encode($ssurl);
-
+        $ssrurl =  $ary['server'] . ":" . $ary['server_port'] . ":" . $ary['protocol'] . ":" . $ary['method'] . ":" . $ary['obfs'] . ":" . str_replace("/","_",str_replace("+","-",$ary['password'])). "/?obfsparam=&remarks=". str_replace("/","_",str_replace("+","-",$ary['name'])). "&group=". str_replace("/","_",str_replace("+","-",$ary['group']));
+        $ssrqr = "ssr://" . str_replace("=","",base64_encode($ssrurl));
         $surge_base = Config::get('baseUrl') . "/downloads/ProxyBase.conf";
         $surge_proxy = "#!PROXY-OVERRIDE:ProxyBase.conf\n";
         $surge_proxy .= "[Proxy]\n";
         $surge_proxy .= "Proxy = custom," . $ary['server'] . "," . $ary['server_port'] . "," . $ary['method'] . "," . $ary['password'] . "," . Config::get('baseUrl') . "/downloads/SSEncrypt.module";
-        return $this->view()->assign('json', $json)->assign('json_show', $json_show)->assign('ssqr', $ssqr)->assign('surge_base', $surge_base)->assign('surge_proxy', $surge_proxy)->display('user/nodeinfo.tpl');
+        return $this->view()->assign('json', $json)->assign('json_show', $json_show)->assign('ssqr', $ssqr)->assign('ssrqr', $ssrqr)->assign('surge_base', $surge_base)->assign('surge_proxy', $surge_proxy)->display('user/nodeinfo.tpl');
     }
 
     public function profile($request, $response, $args)
