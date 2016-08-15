@@ -18,7 +18,7 @@
                     <p>配置文件以及二维码请勿泄露！</p>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="box box-solid">
                     <div class="box-header">
                         <i class="fa fa-code"></i>
@@ -27,43 +27,53 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <textarea class="form-control" rows="6">{$json_show}</textarea>
+                        <textarea class="form-control" rows="12">{$json_show}</textarea>
                     </div>
                     <!-- /.box-body -->
                 </div>
-                <!-- /.box -->
-                <div class="box box-solid">
-                    <div class="box-header">
-                        <i class="fa fa-code"></i>
-
-                        <h3 class="box-title">配置地址</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <input id="ss-qr-text" class="form-control" value="{$ssqr}">
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-                <!-- /.box -->
             </div>
-            <!-- /.col (right) -->
+            <!-- /.col (center) -->
 
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="box box-solid">
                     <div class="box-header">
                         <i class="fa fa-qrcode"></i>
 
-                        <h3 class="box-title">配置二维码</h3>
+                        <h3 class="box-title">原版shadowsocks客户端配置二维码</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div class="text-center">
                             <div id="ss-qr"></div>
                         </div>
+                     <div class="box-body">
+                        <input id="ss-qr-text" class="form-control" value="{$ssqr}">
+                    </div>                   </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col (center) -->
+            <!-- /.col (right) -->
+
+            <div class="col-md-4">
+                <div class="box box-solid">
+                    <div class="box-header">
+                        <i class="fa fa-qrcode"></i>
+
+                        <h3 class="box-title">shadowsocks-rss客户端配置二维码</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="text-center">
+                            <div id="ssr-qr"></div>
+<div class="box-body"><input id="ssr-qr-text" class="form-control" value="{$ssrqr}"></div>
+                        </div>
                     </div>
                     <!-- /.box-body -->
                 </div>
                 <!-- /.box -->
+
             </div>
             <!-- /.col (right) -->
         </div>
@@ -125,6 +135,10 @@
             var text_qrcode = jQuery('#ss-qr-text').val();
             jQuery('#ss-qr').qrcode({
                 "text": text_qrcode
+            });
+            var text_ssrqrcode = jQuery('#ssr-qr-text').val();
+            jQuery('#ssr-qr').qrcode({
+                "text": text_ssrqrcode
             });
             var text_surge_base = jQuery('#surge-base-text').val();
             jQuery('#surge-base-qr').qrcode({
