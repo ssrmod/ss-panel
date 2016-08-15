@@ -4,7 +4,7 @@
 --
 -- Host: localhost
 -- Generation Time: 2016-08-13 12:00:14
--- 服务器版本： 5.7.14-log
+-- 鏈嶅姟鍣ㄧ増鏈細 5.7.14-log
 -- PHP Version: 7.0.9
 SET NAMES utf8;
 SET foreign_key_checks = 0;
@@ -12,19 +12,11 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+08:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `sspanelv3`
---
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `speedtest`
+-- 琛ㄧ殑缁撴瀯 `speedtest`
 --
 
 CREATE TABLE `speedtest` (
@@ -45,7 +37,7 @@ CREATE TABLE `speedtest` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `sp_config`
+-- 琛ㄧ殑缁撴瀯 `sp_config`
 --
 
 CREATE TABLE `sp_config` (
@@ -59,7 +51,7 @@ CREATE TABLE `sp_config` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `sp_email_verify`
+-- 琛ㄧ殑缁撴瀯 `sp_email_verify`
 --
 
 CREATE TABLE `sp_email_verify` (
@@ -72,7 +64,7 @@ CREATE TABLE `sp_email_verify` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `sp_log`
+-- 琛ㄧ殑缁撴瀯 `sp_log`
 --
 
 CREATE TABLE `sp_log` (
@@ -85,7 +77,7 @@ CREATE TABLE `sp_log` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ss_checkin_log`
+-- 琛ㄧ殑缁撴瀯 `ss_checkin_log`
 --
 
 CREATE TABLE `ss_checkin_log` (
@@ -100,7 +92,7 @@ CREATE TABLE `ss_checkin_log` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ss_invite_code`
+-- 琛ㄧ殑缁撴瀯 `ss_invite_code`
 --
 
 CREATE TABLE `ss_invite_code` (
@@ -114,7 +106,7 @@ CREATE TABLE `ss_invite_code` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ss_node`
+-- 琛ㄧ殑缁撴瀯 `ss_node`
 --
 
 CREATE TABLE `ss_node` (
@@ -130,13 +122,14 @@ CREATE TABLE `ss_node` (
   `info` varchar(128) NOT NULL,
   `status` varchar(128) NOT NULL,
   `offset` int(11) NOT NULL DEFAULT '0',
-  `sort` int(3) NOT NULL
+  `sort` int(3) NOT NULL,
+  `node_group` varchar(32) NOT NULL DEFAULT 'A'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ss_node_info_log`
+-- 琛ㄧ殑缁撴瀯 `ss_node_info_log`
 --
 
 CREATE TABLE `ss_node_info_log` (
@@ -150,7 +143,7 @@ CREATE TABLE `ss_node_info_log` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ss_node_online_log`
+-- 琛ㄧ殑缁撴瀯 `ss_node_online_log`
 --
 
 CREATE TABLE `ss_node_online_log` (
@@ -163,7 +156,7 @@ CREATE TABLE `ss_node_online_log` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ss_password_reset`
+-- 琛ㄧ殑缁撴瀯 `ss_password_reset`
 --
 
 CREATE TABLE `ss_password_reset` (
@@ -177,7 +170,7 @@ CREATE TABLE `ss_password_reset` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `user`
+-- 琛ㄧ殑缁撴瀯 `user`
 --
 
 CREATE TABLE `user` (
@@ -212,7 +205,7 @@ CREATE TABLE `user` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `user_token`
+-- 琛ㄧ殑缁撴瀯 `user_token`
 --
 
 CREATE TABLE `user_token` (
@@ -226,7 +219,7 @@ CREATE TABLE `user_token` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `user_traffic_log`
+-- 琛ㄧ殑缁撴瀯 `user_traffic_log`
 --
 
 CREATE TABLE `user_traffic_log` (
@@ -326,71 +319,71 @@ ALTER TABLE `user_traffic_log`
   ADD PRIMARY KEY (`id`);
 
 --
--- 在导出的表使用AUTO_INCREMENT
+-- 鍦ㄥ鍑虹殑琛ㄤ娇鐢ˋUTO_INCREMENT
 --
 
 --
--- 使用表AUTO_INCREMENT `speedtest`
+-- 浣跨敤琛ˋUTO_INCREMENT `speedtest`
 --
 ALTER TABLE `speedtest`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- 使用表AUTO_INCREMENT `sp_config`
+-- 浣跨敤琛ˋUTO_INCREMENT `sp_config`
 --
 ALTER TABLE `sp_config`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- 使用表AUTO_INCREMENT `sp_email_verify`
+-- 浣跨敤琛ˋUTO_INCREMENT `sp_email_verify`
 --
 ALTER TABLE `sp_email_verify`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- 使用表AUTO_INCREMENT `sp_log`
+-- 浣跨敤琛ˋUTO_INCREMENT `sp_log`
 --
 ALTER TABLE `sp_log`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- 使用表AUTO_INCREMENT `ss_checkin_log`
+-- 浣跨敤琛ˋUTO_INCREMENT `ss_checkin_log`
 --
 ALTER TABLE `ss_checkin_log`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- 使用表AUTO_INCREMENT `ss_invite_code`
+-- 浣跨敤琛ˋUTO_INCREMENT `ss_invite_code`
 --
 ALTER TABLE `ss_invite_code`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- 使用表AUTO_INCREMENT `ss_node`
+-- 浣跨敤琛ˋUTO_INCREMENT `ss_node`
 --
 ALTER TABLE `ss_node`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- 使用表AUTO_INCREMENT `ss_node_info_log`
+-- 浣跨敤琛ˋUTO_INCREMENT `ss_node_info_log`
 --
 ALTER TABLE `ss_node_info_log`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3937;
 --
--- 使用表AUTO_INCREMENT `ss_node_online_log`
+-- 浣跨敤琛ˋUTO_INCREMENT `ss_node_online_log`
 --
 ALTER TABLE `ss_node_online_log`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5736;
 --
--- 使用表AUTO_INCREMENT `ss_password_reset`
+-- 浣跨敤琛ˋUTO_INCREMENT `ss_password_reset`
 --
 ALTER TABLE `ss_password_reset`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- 使用表AUTO_INCREMENT `user`
+-- 浣跨敤琛ˋUTO_INCREMENT `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
--- 使用表AUTO_INCREMENT `user_token`
+-- 浣跨敤琛ˋUTO_INCREMENT `user_token`
 --
 ALTER TABLE `user_token`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- 使用表AUTO_INCREMENT `user_traffic_log`
+-- 浣跨敤琛ˋUTO_INCREMENT `user_traffic_log`
 --
 ALTER TABLE `user_traffic_log`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200;
